@@ -1,8 +1,11 @@
 # Machine Problem 1
-Submission of __Team KnoxNaman__ 
+Submission of __Team KnoxNaman__
+- Romelio Tavas Jr. [@bongtavas](https://github.com/bongtavas) 
+- Rene Josiah Quinto [@rjmquinto](https://github.com/rjmquinto) 
+- Josen Daniel De Leon [@jddl68](https://github.com/jddl68) 
 
 ## Building
-Run build.sh to generate sha512 implementation of each member
+Run build.sh to generate the sha512 implementation of each member.
 ```bash
 ./build.sh
 ```
@@ -11,6 +14,18 @@ Run build.sh to generate sha512 implementation of each member
 ```bash
 ./run.sh <input_file>
 ```
+You can also run each member's implementation
+```
+# For rjquinto
+./bin/rjquinto-sha512.out <input_file>
+
+# For rtavas
+./bin/rtavas-sha512.out <input_file>
+
+# For jddeleon
+./bin/jddeleon-sha512.out <input_file>
+```
+
 
 ## Results
 __Input File__ 
