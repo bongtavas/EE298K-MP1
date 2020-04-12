@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/romeliotavas/go-crypto/sha512"
+	"github.com/bongtavas/go-crypto/sha512"
 )
 
 func main() {
