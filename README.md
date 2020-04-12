@@ -1,4 +1,5 @@
-# KnoxNaman MP1
+# Machine Problem 1
+Submission of __Team KnoxNaman__ 
 
 ## Building
 Run build.sh to generate sha512 implementation of each member
@@ -13,13 +14,16 @@ Run build.sh to generate sha512 implementation of each member
 
 ## Results
 __Input File__ 
-- [ubuntu-18.04.2-desktop-amd64.iso](http://releases.ubuntu.com/18.04.4/ubuntu-18.04.4-desktop-amd64.iso?_ga=2.239300614.461945143.1586674096-363697852.1586674096)
+- [go1.14.2.linux-amd64.tar.gz](https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz)
 
 __Machine__ 
 - Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
 
-| Implementation  | Language      | Elapsed Time      |
+| Implementation  | Language      | Elapsed Time       |
 | :-------------  |:-------------:| :-----------------:|
-| rtavas-sha512   | Go            | 14.198s           |
-| rjquinto-sha512 | C++           | 12.950s           |
-| jddeleon-sha512 | C++           | 00.000s           |
+| rjquinto-sha512 | C++           | 0.665s             |
+| rtavas-sha512   | Go            | 0.777s             |
+| jddeleon-sha512 | C++           | 1.042s             |
+
+__Notes__
+- Elapsed Time is the average of 3 runs
