@@ -10,4 +10,4 @@ cd ..
 
 # Build jddeleon-sha512
 cd jddeleon-sha512
-g++ -o ../bin/jddeleon-sha512.out -O2 sha512.cpp
+g++ -o ../bin/jddeleon-sha512.out -O3 sha512.cpp

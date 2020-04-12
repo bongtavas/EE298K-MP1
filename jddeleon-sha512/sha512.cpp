@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 #define rightRotate(x, n) ((x>>n)|(x<<((sizeof(x)<<3)-n)))
 
@@ -28,8 +29,8 @@ uint64_t k[] = { 0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe
               0x113f9804bef90dae, 0x1b710b35131c471b, 0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 
               0x431d67c49c100d4c, 0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817};
 
-std::string hash512(std::string msg_param){
-    __uint128_t L = msg_param.length() * 8;
+std::string hash512(std::vector<unsigned char> msg_param){
+    __uint128_t L = msg_param.size() * 8;
     uint64_t K = (1024 - 1 - 128 - L)%1024;
     uint64_t size = L + 1 + K + 128; // L + 1 + K + 128 % 1024 = 0 NOTE: SIZE IS IN BITS AND MULTIPLE OF 1024
 
@@ -37,9 +38,9 @@ std::string hash512(std::string msg_param){
     memset(msg, 0, size/8);
     
     // Preprocess
-    memcpy(msg,  msg_param.c_str(), msg_param.length());
+    memcpy(msg,  msg_param.data(), msg_param.size());
 
-    *((unsigned char*)msg + msg_param.length()) |= 0x80; // Append 1 bit
+    *((unsigned char*)msg + msg_param.size()) |= 0x80; // Append 1 bit
 
     //append length
     uint64_t lo = __builtin_bswap64(L);
@@ -111,19 +112,25 @@ std::string hash512(std::string msg_param){
 
 }
 
-int main(void){
-    //std::string inputMsg("a");
+int main(int argc, char *argv[]){
+    std::string filename(argv[1]);
+    std::cout << "Opening: " << filename << std::endl;
 
-    std::string inputMsg("");
-    for(int i = 0; i < 100000000;i++){
-        inputMsg.append("a");
-    }
+	std::ifstream input(filename, std::ios::binary);
 
-    std::cout << "Input: " << std::endl;
-    //std::cout << inputMsg << std::endl;
-    std::cout << "Output: " << std::endl;
-    std::string output = hash512(inputMsg);
-    //std::cout << output << std::endl;
+	// copies all data into buffer
+	std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(input), {});
+
+	// prints buffer to console
+	// std::string s, msg;
+	// for (auto const& s : buffer) { msg += s; }
+
+    std::cout << "Hashing " << buffer.size() << " bytes of data...." << std::endl;
+
+
+    std::string output = hash512(buffer);
+    std::cout << "--- OUTPUT HASH BELOW ---" << std::endl;
+    std::cout << output << std::endl;
 
     return 0;
 }
